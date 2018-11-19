@@ -10,8 +10,11 @@ import (
 	metrics "github.com/rcrowley/go-metrics"
 	"github.com/stellar/go/services/horizon/internal/db2/core"
 	"github.com/stellar/go/support/db"
+	ilog "github.com/stellar/go/support/log"
 	"github.com/stellar/go/xdr"
 )
+
+var log = ilog.DefaultLogger.WithField("service", "ingest")
 
 const (
 	// CurrentVersion reflects the latest version of the ingestion
@@ -68,9 +71,9 @@ type Cursor struct {
 
 // Config allows passing some configuration values to System and Session.
 type Config struct {
-	// DisableAssetStats is a feature flag that determines whether to calculate
+	// EnableAssetStats is a feature flag that determines whether to calculate
 	// asset stats in this ingestion system.
-	DisableAssetStats bool
+	EnableAssetStats bool
 }
 
 // EffectIngestion is a helper struct to smooth the ingestion of effects.  this
